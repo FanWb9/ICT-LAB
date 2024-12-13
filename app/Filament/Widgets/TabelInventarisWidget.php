@@ -36,8 +36,7 @@ class TabelInventarisWidget extends BaseWidget
                     ->label('Nama Barang')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('quantity')
-                    ->label('Total Quantity')
-                    ->sortable(),
+                    ->label('Jumlah Barang'),
                 Tables\Columns\TextColumn::make('Bisa_Digunakan')
                     ->label('Bisa Digunakan'),
                 Tables\Columns\TextColumn::make('Kerusakan_Kecil')

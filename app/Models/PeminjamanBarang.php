@@ -24,5 +24,13 @@ class PeminjamanBarang extends Model
 {
     return $query->whereDate('created_at', Carbon::today());
 }
+    public function setNamaSiswaAttribute($value)
+    {
+        $this->attributes['nama_siswa'] = strtoupper($value);
+    }
+    public function SetNamaGuru($value){
+        $this->attribute['guru_mapel'] = strtoupper($value);
+    }
+
 
 }

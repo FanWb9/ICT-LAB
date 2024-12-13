@@ -64,9 +64,12 @@ class PeminjamanBarangResource extends Resource
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\TextInput::make('nama_siswa')
-                            ->label('Nama Siswa')
-                            ->placeholder('Masukan Nama Siswa')
-                            ->required(),
+                        ->label('Nama Siswa')
+                        ->placeholder('Masukan Nama Siswa')
+                        ->required()
+                        ->reactive()
+                        ->afterStateUpdated(fn ($state, callable $set) => $set('nama_siswa', strtoupper($state))),                    
+                            
                         Forms\Components\TextInput::make('kelas')
                             ->label('Kelas')
                             ->placeholder('Masukan Kelas Anda')
@@ -87,7 +90,7 @@ class PeminjamanBarangResource extends Resource
                                 !($livewire instanceof \Filament\Resources\Pages\ViewRecord) && (
                                     $livewire instanceof \Filament\Resources\Pages\CreateRecord ||
                                     $livewire instanceof \Filament\Resources\Pages\EditRecord
-                                )
+                                )// dia cuma nampilin gambar di tampilan view saja 
                             )
                             ->afterStateUpdated(function ($state) {
                                 if ($state) {
@@ -136,7 +139,8 @@ class PeminjamanBarangResource extends Resource
                         Forms\Components\TextInput::make('guru_mapel')
                             ->label('Guru Mapel')
                             ->placeholder('Masukan Guru Mapel Anda')
-                            ->required(),
+                            ->required()     
+                            ->afterStateUpdated(fn ($state, callable $set)=>$set('guru_mapel',strtoupper($state))),
                         Forms\Components\TextInput::make('ruangan')
                             ->label('Ruang Kelas')
                             ->placeholder('Ruang Kelas Anda')

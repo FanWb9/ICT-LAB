@@ -20,7 +20,7 @@
         <div class="flex-1">
             <video id="video" class="w-full h-auto border" autoplay></video>
         </div>
-        
+        {{-- data = camvas --}}
         <!-- Gambar hasil tangkapan -->
         <div class="flex-1">
             <img x-show="imageData" :src="imageData" class="w-full h-auto border border-gray-300 rounded-lg shadow-md" />

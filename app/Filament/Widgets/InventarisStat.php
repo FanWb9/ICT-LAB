@@ -40,7 +40,7 @@ class InventarisStat extends BaseWidget
 
         // Total jumlah produk unik berdasarkan kd_barang
         $jumlahProdukUnik = Inventaris::whereYear('created_at', $currentYear)
-            ->distinct('kd_barang')
+            ->distinct('kd_barang')// ini tuh kalo misal nya ada kode 2 kali dengan kode sama secara otomatis dia cuma bacanya 1
             ->count('kd_barang');
 
         // Hitung persentase berdasarkan quantity
@@ -50,28 +50,28 @@ class InventarisStat extends BaseWidget
         $persenKerusakanBesar = $this->hitungPersentase($kerusakanBesar, $totalQuantity);
 
         return [
-            Stat::make('Jumlah Barang', $jumlahProdukUnik)
-                ->description('Total Barang Di ICT')
+            Stat::make('Nama Barang', $jumlahProdukUnik)
+                ->description('BARANG DI ICT')
                 ->descriptionIcon('heroicon-m-clipboard-document-list')
                 ->color('info'),
 
             Stat::make('Bisa Digunakan', $bisaDigunakan)
-                ->description("{$persenBisaDigunakan}% dari total Barang")
+                ->description("{$persenBisaDigunakan}% dari total quantity Barang")
                 ->descriptionIcon('heroicon-m-check-circle')
                 ->color('success'),
 
             Stat::make('Kerusakan Kecil', $kerusakanKecil)
-                ->description("{$persenKerusakanKecil}% dari total Barang")
+                ->description("{$persenKerusakanKecil}% dari total quantity Barang")
                 ->descriptionIcon('heroicon-m-exclamation-circle')
                 ->color('primary'),
 
             Stat::make('Kerusakan Sedang', $kerusakanSedang)
-                ->description("{$persenKerusakanSedang}% dari total Barang")
+                ->description("{$persenKerusakanSedang}% dari total quantity Barang")
                 ->descriptionIcon('heroicon-m-exclamation-triangle')
                 ->color('warning'),
 
             Stat::make('Kerusakan Besar', $kerusakanBesar)
-                ->description("{$persenKerusakanBesar}% dari total Barang")
+                ->description("{$persenKerusakanBesar}% dari total quantity Barang")
                 ->descriptionIcon('heroicon-m-x-circle')
                 ->color('danger'),
 
